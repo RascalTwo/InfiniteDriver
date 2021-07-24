@@ -146,7 +146,7 @@ k.scene('gameplay', () => {
       })();
 
       let lastSpawned = 0;
-      const minimumDistance = k.height() * 10;
+      const minimumDistance = 1000 * 10;
       k.loop(10, () => {
         if (distance.get() - lastSpawned <= minimumDistance) return;
         lastSpawned = distance.get();
@@ -305,6 +305,20 @@ k.scene('gameplay', () => {
     k.keyDown('right', handleTurn(5));
     k.keyRelease('left', () => player.angle = 0);
     k.keyRelease('right', () => player.angle = 0);
+    k.mouseDown(() => {
+      const clickX = k.mousePos().x;
+      const diff = clickX - player.pos.x;
+      if (Math.abs(diff) < 5) {
+        player.angle = 0;
+        return;
+      }
+      const offset = 5 * (clickX < player.pos.x ? -1 : 1);
+      handleTurn(offset)();
+    })
+    k.mouseRelease(() => {
+      player.angle = 0;
+    })
+
     return player;
   })();
 
@@ -342,7 +356,7 @@ k.scene('gameplay', () => {
     let itemPool = [ ...ITEMS ];
     let lastSpawned = 0;
 
-    const minimumDistance = k.height()/3*2;
+    const minimumDistance = 1000 / 3 * 2;
     k.loop(1, () => {
       if (distance.get() - lastSpawned <= minimumDistance) return;
       // 25% chance of failure
