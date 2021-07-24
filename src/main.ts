@@ -29,7 +29,7 @@ k.scene('gameplay', () => {
 
     let speed = 10;
 
-    const generateText = () => `${speed.toFixed(1)}`
+    const generateText = () => `Speed: ${speed.toFixed(1)}`
 
     const display = k.add([
       k.text(generateText(), 32),
@@ -69,8 +69,17 @@ k.scene('gameplay', () => {
   const distance = (() => {
     let distance = 0;
 
+    const generateText = () => `Distance: ${distance.toFixed(1)}`
+
+    const display = k.add([
+      k.text(generateText(), 32),
+      k.pos(0, 32),
+      k.origin('topleft')
+    ]);
+
     k.action(() => {
       distance += speed.get();
+      display.text = generateText()
     })
 
     return {
@@ -80,9 +89,20 @@ k.scene('gameplay', () => {
   const score = (() => {
     let score = 0;
 
+    const generateText = () => `Score: ${score}`
+
+    const display = k.add([
+      k.text(generateText(), 32),
+      k.pos(k.width(), 32),
+      k.origin('topright')
+    ]);
+
     return {
       get: () => score,
-      set: (newScore: number) => score = newScore
+      set: (newScore: number) => {
+        score = newScore
+        display.text = generateText();
+      }
     }
   })();
 
@@ -91,7 +111,7 @@ k.scene('gameplay', () => {
 
     let fuel = 12.5;
 
-    const generateText = () => `${fuel.toFixed(1)}`
+    const generateText = () => `Fuel: ${fuel.toFixed(1)}`
 
     const display = k.add([
       k.text(generateText(), 32),
@@ -284,6 +304,11 @@ k.scene('gameplay', () => {
       player.changeSprite(`${carType}-vehicle`)
     })
 
+    player.collides('gem', (gem: GameObj) => {
+      k.destroy(gem)
+      score.set(score.get()+1)
+    })
+
     player.action(() => {
       if (k.get('oil').every(oil => !oil.isOverlapped(player))) return;
       speed.inOil();
@@ -320,6 +345,42 @@ k.scene('gameplay', () => {
     })
 
     return player;
+  })();
+
+  (() => {
+    const { SCALE, HEIGHT } = (() => {
+      const gem = k.sprite('gem-red')
+      const SCALE = (50-12.5) / gem.width;
+      return {
+        SCALE,
+        WIDTH: gem.width * SCALE,
+        HEIGHT: gem.height * SCALE
+      };
+    })();
+
+    let lastSpawned = 0;
+    const minimumDistance = 250;
+    k.loop(1, () => {
+      if (distance.get() - lastSpawned <= minimumDistance) return;
+      lastSpawned = distance.get();
+      const color = randomFrom(['red', 'green', 'blue', 'yellow', 'magenta', 'cyan'])
+      const gem = k.add([
+        k.sprite(`gem-${color}`),
+        k.pos(randomBetween(shoulderWidth, k.width() - shoulderWidth), -k.height()),
+        k.origin('center'),
+        k.layer('entities'),
+        k.scale(SCALE),
+        k.rotate(randomBetween(0, 3.14)),
+        'gem'
+      ]);
+      gem.play('idle')
+    });
+
+    k.action('gem', gem => {
+      gem.pos.y += speed.get();
+      if (gem.pos.y > k.height()) k.destroy(gem);
+    })
+
   })();
 
   (() => {
@@ -436,7 +497,18 @@ k.scene('main-menu', () => {
     k.loadSprite('diesel-can', './src/assets/diesel-can.svg'),
     k.loadSprite('electric-battery', './src/assets/electric-battery.png'),
     k.loadSprite('pitlane-lines', './src/assets/road/pitlane_lines.png'),
-    k.loadSprite('oil', './src/assets/oil.png')
+    k.loadSprite('oil', './src/assets/oil.png'),
+    ...['red', 'yellow', 'green', 'blue', 'magenta', 'cyan'].map(color =>
+      k.loadSprite(`gem-${color}`, `./src/assets/gem-${color}.png`, {
+        sliceX: 5,
+        sliceY: 2,
+        anims: {
+          idle: {
+            from: 0,
+            to: 9
+          }
+        }
+      }))
   ])
   k.start('main-menu');
 })();
