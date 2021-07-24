@@ -404,13 +404,25 @@ k.scene('game-over', (distance: number, duration: number, score: number) => {
 
 k.scene('main-menu', () => {
   k.add([
-    k.text('Start', 32),
-    k.pos(k.width() / 2, k.height() / 2),
-    k.origin('center')
-  ])
+    k.text('Infinite Driver', 32),
+    k.pos(k.width() / 2, 0),
+    k.origin('top')
+  ]);
+
+  k.add([
+    k.text('Your goal is to collect as many Xs as possible!\n\nBut you have a limited amount of fuel...\n\nFortunatly, you\'ll find tons of\nuseful fuel on the road!\n\nUnfortunatly, your vehicle will only accept\none of the three fuel types:\n- Gasoline\n- Diesel\n- Electricity\n\nPick up the wrong fuel and\nyou\'ll be in for a bad time...', 16),
+    k.pos(0, k.height() / 2),
+    k.origin('left')
+  ]);
+
+  k.add([
+    k.text('Use the Left/Right or A/D keys to\nmove your vehicle left and right,\nor click to the left/right of it.', 16),
+    k.pos(0, k.height()),
+    k.origin('botleft')
+  ]);
+
   k.mouseClick(() => k.go('gameplay'))
   k.keyDown('space', () => k.go('gameplay'));
-  k.go('gameplay')
 });
 
 (async () => {
