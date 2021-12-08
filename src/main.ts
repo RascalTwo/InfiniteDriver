@@ -327,8 +327,12 @@ k.scene('gameplay', () => {
     }
     k.keyDown('left', handleTurn(-5));
     k.keyDown('right', handleTurn(5));
+    k.keyDown('a', handleTurn(-5));
+    k.keyDown('d', handleTurn(5));
     k.keyRelease('left', () => player.angle = 0);
     k.keyRelease('right', () => player.angle = 0);
+    k.keyRelease('a', () => player.angle = 0);
+    k.keyRelease('d', () => player.angle = 0);
     k.mouseDown(() => {
       const clickX = k.mousePos().x;
       const diff = clickX - player.pos.x;
