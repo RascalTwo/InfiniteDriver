@@ -9,8 +9,7 @@ const k = kaboom({
   canvas: document.querySelector('canvas')!,
 	width: window.innerWidth,
 	height: window.innerHeight - 25,
-  clearColor: [0, 0, 0, 0.5],
-  debug: true
+  clearColor: [0, 0, 0, 0.5]
 });
 
 const randomFrom = <T>(arr: T[]) => arr[Math.floor(randomBetween(0, arr.length))]
@@ -93,7 +92,7 @@ k.scene('gameplay', () => {
 
     const display = k.add([
       k.text(generateText(), 32),
-      k.pos(k.width(), 32),
+      k.pos(k.width() - 12.5, 32),
       k.origin('topright')
     ]);
 
@@ -115,7 +114,7 @@ k.scene('gameplay', () => {
 
     const display = k.add([
       k.text(generateText(), 32),
-      k.pos(k.width(), 0),
+      k.pos(k.width() - 12.5, 0),
       k.origin('topright')
     ]);
 
