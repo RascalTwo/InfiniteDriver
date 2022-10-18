@@ -5,7 +5,7 @@
 [![Run on Repl.it](https://repl.it/badge/github/RascalTwo/InfiniteDriver)](https://repl.it/github/RascalTwo/InfiniteDriver)
 [![Website](https://img.shields.io/website?url=https://infinitedriver--rascaltwo.repl.co/)](https://infinitedriver--rascaltwo.repl.co/)
 
-Infinite Driver written in [kaboom.js][kaboom.js].
+**Link to project:** https://infinitedriver--rascaltwo.repl.co/
 
 https://user-images.githubusercontent.com/9403665/145287295-5d352e49-c081-4d70-b210-b31d9f862f1f.mp4
 
@@ -19,10 +19,26 @@ Fuel can be increased by picking up the color-coded fuel type.
 
 Yellow lanes change your vehicle type.
 
-## Controls
-
 - A/Left and D/Right to go left and right
 - Clicking to the left/right of the car also allows to go left and right.
+
+## How It's Made
+
+**Tech used:** HTML, CSS, JavaScript, TypeScript, [Kaboom.js][kaboom.js]
+
+Written in TypeScript, it starts off with three screens - a title screen, a gameplay screen, and a game over screen. With a great deal of encapsulation the UI and individual game entities & groups are all added to the gameplay screen.
+
+## Optimizations
+
+While there are no impactful optimizations remaining, there were more features that were planned but not implemented, from racing against a leaderboard via ghost cars, the randomized assets being seeded - to allow for a game-of-the-day - to additional sprites in general.
+
+## Examples
+
+This isn't the first nor last game I've written using Kaboom.js:
+
+Flappy Bird: https://github.com/RascalTwo/FlappyBird
+
+Rail Snake: https://github.com/RascalTwo/RailSnake
 
 ## Credits
 

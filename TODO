@@ -1,0 +1,139 @@
+Endless Driver
+	Theme
+		Driving down a road
+			Gas vs Diesel vs Electric
+			Red vs Yellow vs Battery
+
+	Distance traveled depends on fuel
+		Game of when out of fuel
+
+	All three fuel types appear on the road
+		Incorrectly chosing does nothing...if you are electric
+		otherwise, you lose fuel
+
+	Collectable money on the road
+
+	Damage
+		Starts off at 0, fails if you get to 100%
+		Higher damage
+			Lower fuel efficiency
+			High rate of ability failure
+			Lower controls accuracy
+				Stearing drifts
+				Controls are delayed
+		Repairable by mechanics wrench pickup, or by changing vehicles
+	
+	Driving off the road increases damage
+
+	Collectable jobs
+		Require picking up cargo and carrying it X distance
+		Cargo decreases your MPG, but rewards you if completed
+
+	Ability to jump over obsticles
+		Rate-limited
+		Costs fuel
+
+	Abilities
+		Jump
+			Costs fuel
+		Boost left/right
+			Costs fuel
+
+	Vehicle changers
+		Pitstop
+		Dealership
+
+	Branching paths
+		Can include all three, or just one.
+			Left, Middle, Right.
+		When not all are included, failing to choose a valid branch results in game over
+		
+
+	Sprites
+		Road
+		3x Vehicles
+		Gas Canistar
+		Battery
+		Money
+		Cargo
+		Fuel gague
+		Battery gague
+
+
+Spaceships
+Alt themes:
+	ocean
+
+Must protect from damage
+
+Actions
+	Deployable lazor shield
+		Cooldown between redeploys
+	Fireable lazor
+		Splits asteroid into smaller aliens with random velocity
+	Deployable barrier
+		Limited health
+	AOE Mist
+		Slows enemies
+
+Multiplayer
+	Record/Replayability
+	Co-Op
+		Double the protection, double the aliens
+	Versus
+		One protector, one alien spawner
+
+Alien limitations
+	Count
+	Spawn Locations
+	Time
+
+Levels
+	Different spaceship locations
+	Walls that route aliens
+
+Level editor
+	Spaceship locations
+	Walls
+	Spawning timeline
+
+
+Slime in a cave
+
+Sticks to every stickable surface
+
+Can only jump
+	Direction is time-based
+		Every X the direction rotates 360
+
+	Power is based on how long space bar is held down
+		Power loops back and forth between low and high
+		Direction rotation is paused during power selection
+
+Moving platforms
+Barriers requiring unlocking
+	Collectable items
+	Triggers
+		Types
+			Buttons
+			Switches
+				Turns off after X jumps
+			Hourglass
+				Turns off after amount of time
+
+Score = time, jumps requires, items collected
+
+Level designer
+	Place static assets
+		Wall
+		Floor
+		Ceiling
+	Items
+	Barriers
+	Collectables
+	Switches
+	Buttons
+	Hourglasses
+
+Multiplayer
+	Multiple slimes
